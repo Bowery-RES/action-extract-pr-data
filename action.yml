@@ -21,8 +21,7 @@ runs:
         echo "$REPOSITORY"
     
     - uses: actions/checkout@v2
-    - uses: ./
-
+    
     - name: Use Node.js 14.x
       uses: actions/setup-node@v2
       with:
