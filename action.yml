@@ -1,5 +1,9 @@
 name: 'Extract PR data'
 description: 'Extracting PR data and emitting some useful values to output'
+outputs:
+  env_url:
+    description: "Env url"
+    value: ${{ steps.emit_env_url.outputs.env_url }}
 
 runs:
   using: "composite"
@@ -25,14 +29,10 @@ runs:
     - name: Install Dependencies
       uses: bahmutov/npm-install@v1.8.21
 
-    # - name: Configure secrets
-    #   if: ${{ !env.ACT }} 
-    #   uses: aws-actions/configure-aws-credentials@v1
-    #   with:
-    #       role-to-assume: arn:aws:iam::814827541967:role/GithubOIDC-Role-QMKR3DR5WV3B
-    #       aws-region: 'us-east-1'
-
-    - name: Run script
-      uses: actions/setup-node@v2
-      run: node get-pr-deploy-link.mjs
+    - name: Emit env_url
+      shell: bash
+      id: emit_env_url
+      run: |
+          env_url=$(node get-pr-deploy-link.mjs)
+          echo ::set-output name=env_url::$env_url
       

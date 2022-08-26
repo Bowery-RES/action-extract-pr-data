@@ -29,7 +29,7 @@ const getPrDeployLink = async (sha,ghToken) => {
 }
 
 const sha = await getPrSha(prNumber,token)
-console.log(sha)
+// console.log(sha)
 const prDeployLink = await getPrDeployLink(sha,token)
 console.log(prDeployLink.payload.web_url);
 
