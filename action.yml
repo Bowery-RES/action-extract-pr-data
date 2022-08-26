@@ -1,0 +1,38 @@
+name: 'Extract PR data'
+description: 'Extracting PR data and emitting some useful values to output'
+
+runs:
+  using: "composite"
+  steps:
+
+    - name: Set necessary env vars 
+      shell: bash
+      env:
+        GH_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+        PR_NUMBER: ${{ github.event.number }}
+        REPOSITORY: ${{ github.repository  }}
+      run: |
+        echo "$GH_TOKEN"
+        echo "$PR_NUMBER"
+        echo "$REPOSITORY"
+
+
+    - name: Use Node.js 14.x
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14.x
+    
+    - name: Install Dependencies
+      uses: bahmutov/npm-install@v1.8.21
+
+    # - name: Configure secrets
+    #   if: ${{ !env.ACT }} 
+    #   uses: aws-actions/configure-aws-credentials@v1
+    #   with:
+    #       role-to-assume: arn:aws:iam::814827541967:role/GithubOIDC-Role-QMKR3DR5WV3B
+    #       aws-region: 'us-east-1'
+
+    - name: Run script
+      uses: actions/setup-node@v2
+      run: node get-pr-deploy-link.mjs
+      
