@@ -21,14 +21,17 @@ runs:
         echo "$REPOSITORY"
     
     - uses: actions/checkout@v2
-    
+
     - name: Use Node.js 14.x
       uses: actions/setup-node@v2
       with:
         node-version: 14.x
     
-    - name: Install Dependencies
-      uses: bahmutov/npm-install@v1.8.21
+    - name: Install deps
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14.x
+      run: npm ci
 
     - name: Emit env_url
       shell: bash
