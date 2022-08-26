@@ -25,17 +25,11 @@ const getPrDeployLink = async (sha,ghToken) => {
     },
   })
   return await res.data
-//   .map(d=>d)
   .find(deploy => deploy.sha == sha)
 }
 
 const sha = await getPrSha(prNumber,token)
 console.log(sha)
 const prDeployLink = await getPrDeployLink(sha,token)
-console.log(prDeployLink
-    // .map(d=> d.payload)
-    .payload.web_url
-    );
-
-// console.log(process.env.PR_NUMBER)
+console.log(prDeployLink.payload.web_url);
 
