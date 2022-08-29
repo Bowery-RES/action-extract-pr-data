@@ -1,43 +1,13 @@
-name: 'Extract PR data'
-description: 'Extracting PR data and emitting some useful values to output'
+name: 'Hello World'
+description: 'Greet someone and record the time'
+inputs:
+  who-to-greet:  # id of input
+    description: 'Who to greet'
+    required: true
+    default: 'World'
 outputs:
-  env_url:
-    description: "Env url"
-    value: ${{ steps.emit_env_url.outputs.env_url }}
-
+  time: # id of output
+    description: 'The time we greeted you'
 runs:
-  using: "composite"
-  steps:
-
-    - name: Set necessary env vars 
-      shell: bash
-      env:
-        GH_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
-        PR_NUMBER: ${{ github.event.number }}
-        REPOSITORY: ${{ github.repository  }}
-      run: |
-        echo "$GH_TOKEN"
-        echo "$PR_NUMBER"
-        echo "$REPOSITORY"
-    
-    - uses: actions/checkout@v2
-
-    - name: Use Node.js 14.x
-      uses: actions/setup-node@v2
-      with:
-        node-version: 14.x
-    
-    - name: Install deps
-      uses: actions/setup-node@v2
-      with:
-        node-version: 14.x
-    - run: npm ci
-      shell: bash
-
-    - name: Emit env_url
-      shell: bash
-      id: emit_env_url
-      run: |
-          env_url=$(node get-pr-deploy-link.mjs)
-          echo ::set-output name=env_url::$env_url
-      
+  using: 'node16'
+  main: 'index.js'
