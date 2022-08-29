@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "act":"act -j hello_world_job -e .act/debug.json --env-file .act/my.env --secret-file .act/.secrets -W .act/debug.yml"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
