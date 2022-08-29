@@ -1,0 +1,24 @@
+on:
+  pull_request:
+    types: [opened, labeled, ready_for_review]
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: A job to say hello
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
+      - name: Call actions 
+        id: step_url
+        uses: Bowery-RES/action-extract-pr-data@debug
+        with:
+          gh_token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+          pr_number: ${{ github.event.number }}
+          repository: ${{ github.repository }}
+      - name: Echo
+        shell: bash
+        run: echo ${{ steps.step_url.outputs.env_url}}
