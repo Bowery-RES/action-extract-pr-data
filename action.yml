@@ -15,4 +15,4 @@ outputs:
     description: 'Env url'
 runs:
   using: 'node16'
-  main: 'index.mjs'
+  main: 'dist/index.mjs'
