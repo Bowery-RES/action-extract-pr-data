@@ -1,13 +1,18 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Extract PR data'
+description: 'Extracting PR data and emitting some useful values to output'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  gh_token:
+    description: 'Access token'
     required: true
-    default: 'World'
+  pr_number: 
+    description: 'Number of pull request to access'
+    required: true
+  repository: 
+    description: '`github.repository` of `github` context'
+    required: true
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  env_url: # id of output
+    description: 'Env url'
 runs:
   using: 'node16'
-  main: 'index.js'
+  main: 'index.mjs'
