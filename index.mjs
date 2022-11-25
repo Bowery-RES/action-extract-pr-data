@@ -16,17 +16,19 @@ try {
   let pr = await octokit.request(
     `GET /repos/${evalInput(inputs.repository)}/pulls/${evalInput(inputs.prNumber)}`
   );
-  let sha = pr.data.head.sha;
+  let isCompPlexLabel = pr.data.labels.find(obj => obj.name === "compplex-e2e")
+  let isWebAppLabel = pr.data.labels.find(obj => obj.name === "webapp-e2e")
 
-  let deploys = await octokit.request(
-    `GET /repos/${evalInput(inputs.repository)}/deployments?per_page=100`
-  );
-  let deploy = deploys.data.find(deploy => deploy.sha == sha);
-  
-  let deployUrl = deploy.payload.web_url;
+  if(isCompPlexLabel){
+    console.log("find the commentary and output the link");
+    debugger
+  }
+  if(isWebAppLabel){
+    console.log("find the comment and output the link");
+    debugger
+  }
 
-  setOutput("env_url",deployUrl)
-  console.log(deployUrl)
+  debugger
 } catch (error) {
   setFailed(error.message);
 }
