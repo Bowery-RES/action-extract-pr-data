@@ -31,6 +31,7 @@ try {
       commentCompplexDeploy.body.split(" ").find(val=> val.startsWith('https://compplex-client-review'))
     ); 
     console.log(linkCompplexDeploy.origin);
+    setOutput("compplex_link", linkCompplexDeploy.origin);
     debugger
   }
 
@@ -44,6 +45,7 @@ try {
     ); 
 
     console.log(linkWebAppDeploy.origin);
+    setOutput("webapp_link", linkWebAppDeploy.origin);
     debugger
   }
 

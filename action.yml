@@ -11,8 +11,10 @@ inputs:
     description: '`github.repository` of `github` context'
     required: true
 outputs:
-  env_url: # id of output
-    description: 'Env url'
+  compplex_link: # id of output
+    description: 'CompPlex deploy'
+  webapp_link:
+    description: 'WebApp deploy'
 runs:
   using: 'node16'
   main: 'dist/index.mjs'
