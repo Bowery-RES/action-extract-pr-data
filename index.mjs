@@ -19,12 +19,31 @@ try {
   let isCompPlexLabel = pr.data.labels.find(obj => obj.name === "compplex-e2e")
   let isWebAppLabel = pr.data.labels.find(obj => obj.name === "webapp-e2e")
 
+  let commentsUrl = new URL(pr.data.comments_url) 
+  let comments = await octokit.request(`GET ${commentsUrl.pathname}`)
+
   if(isCompPlexLabel){
     console.log("find the commentary and output the link");
+    let commentCompplexDeploy = comments.data.find(
+      comment => comment.body.includes("CompPlex review app")
+    );
+    let linkCompplexDeploy = new URL(
+      commentCompplexDeploy.body.split(" ").find(val=> val.startsWith('https://compplex-client-review'))
+    ); 
+    console.log(linkCompplexDeploy.origin);
     debugger
   }
+
   if(isWebAppLabel){
     console.log("find the comment and output the link");
+    let commentWebAppDeploy = comments.data.find(
+      comment => comment.body.includes("Webapp review app")
+    );
+    let linkWebAppDeploy = new URL(
+      commentWebAppDeploy.body.split(" ").find(val=> val.startsWith("https://webapp"))
+    ); 
+
+    console.log(linkWebAppDeploy.origin);
     debugger
   }
 
