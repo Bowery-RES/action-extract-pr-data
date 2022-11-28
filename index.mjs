@@ -32,7 +32,6 @@ try {
     ); 
     console.log(linkCompplexDeploy.origin);
     setOutput("compplex_link", linkCompplexDeploy.origin);
-    debugger
   }
 
   if(isWebAppLabel){
@@ -46,10 +45,7 @@ try {
 
     console.log(linkWebAppDeploy.origin);
     setOutput("webapp_link", linkWebAppDeploy.origin);
-    debugger
   }
-
-  debugger
 } catch (error) {
   setFailed(error.message);
 }
