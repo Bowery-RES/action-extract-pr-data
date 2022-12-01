@@ -29,7 +29,7 @@ Develop flow:
 2. You make some changes in `index.mjs` file
 3. You compile it with command 
 ```
-ncc build index.js --license licenses.txt 
+ncc build index.mjs --license licenses.txt 
 ``` 
 4. Commit and push
 5. Update action's label
