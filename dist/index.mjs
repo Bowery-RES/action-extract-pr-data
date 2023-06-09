@@ -9581,7 +9581,7 @@ try {
     `GET /repos/${evalInput(inputs.repository)}/pulls/${evalInput(inputs.prNumber)}`
   );
   let isCompPlexLabel = pr.data.labels.find(obj => obj.name === "compplex-e2e")
-  let isWebAppLabel = pr.data.labels.find(obj => obj.name === "webapp-e2e")
+  let isWebAppLabel = pr.data.labels.find(obj => obj.name === "e2e-regression")
 
   let commentsUrl = new URL(pr.data.comments_url) 
   let comments = await octokit.request(`GET ${commentsUrl.pathname}`)
