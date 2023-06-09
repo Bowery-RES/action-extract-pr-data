@@ -16,6 +16,10 @@ jobs:
       env:
         GH_TOKEN: ${{ secrets.GH_TECH_ACCESS_TOKEN }}
       uses: Bowery-RES/action-extract-pr-data@latest
+      with:
+        gh_token: ${{ secrets.GH_TECH_ACCESS_TOKEN }}
+        pr_number: ${{ github.event.number }}
+        repository: ${{ github.repository }}
 
     - name: "get review app url"
       run: echo "The review app url is ${{ steps.test_output.outputs.webapp_link }}"
