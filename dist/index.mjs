@@ -9571,7 +9571,7 @@ const inputs = {
 }
 
 const evalInput = (inputName) => {
-  return process.env.GH_DEBUG === 1 ? process.env[`${inputName}`] : (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)(inputName) 
+  return process.env.GH_DEBUG === 1 ? process.env[inputName] : (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)(inputName) 
 } 
 
 const octokit = (0,_actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit)(evalInput(inputs.token));
@@ -9601,7 +9601,7 @@ try {
   if(isWebAppLabel){
     let commentWebAppDeploy = isUndefined(
       comments.data.find(
-        comment => comment.body.includes("Webapp review app")
+        comment => comment.body.includes("Application URL ->")
         ), "Failed to find comment with WebApp PR deploy link"
     );
     let linkWebAppDeploy = new URL(
@@ -9614,7 +9614,7 @@ try {
   (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)(error.message);
 }
 
-function isUndefined(value, message = "Value is undefined."){
+function isUndefined(value, message = "Webapp or Comp-plex deployment comment is undefined."){
   if(typeof value === 'undefined'){
     throw new Error(message)
   }
