@@ -24,13 +24,7 @@ console.log(evalInput(inputs.prNumber));
 console.log(evalInput(inputs.repository));
 console.log(`GET /repos/${evalInput(inputs.repository)}/pulls/${evalInput(inputs.prNumber)}`);
 
-
-try {
-  const octokit = getOctokit(evalInput(inputs.token));
-} catch (error) {
-  console.log("Failed to auth with octokit...");
-  setFailed(error.message);
-}
+const octokit = getOctokit(evalInput(inputs.token));
 
 try {
   let pr = await octokit.request(
@@ -54,7 +48,7 @@ try {
     console.log(`Comp-plex PR deploy link: ${linkCompplexDeploy.origin}`);
     setOutput("compplex_link", linkCompplexDeploy.origin);
   }
-  
+
   if(isWebAppLabel){
     let commentWebAppDeploy = isUndefined(
       comments.data.find(
