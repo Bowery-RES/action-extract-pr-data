@@ -9574,7 +9574,12 @@ const evalInput = (inputName) => {
   return process.env.GH_DEBUG === 1 ? process.env[inputName] : (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)(inputName) 
 } 
 
-const octokit = (0,_actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit)(evalInput(inputs.token));
+try {
+  const octokit = (0,_actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit)(evalInput(inputs.token));
+} catch (error) {
+  console.log("Failed to auth with octokit...");
+  (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)(error.message);
+}
 
 
 
