@@ -9580,9 +9580,9 @@ __nccwpck_require__.a(__webpack_module__, async (__webpack_handle_async_dependen
  * If env var `GH_DEBUG='1'` - inputs for actions will be evaluated from environment but not from Action's input
  */
 const inputs = {
-  token: "GH_TOKEN",
-  prNumber: "PR",
-  repository: "REPO"
+  token: "gh_token",
+  prNumber: "pr_number",
+  repository: "repository"
 }
 
 const evalInput = (inputName) => {
@@ -9598,13 +9598,7 @@ console.log(evalInput(inputs.prNumber));
 console.log(evalInput(inputs.repository));
 console.log(`GET /repos/${evalInput(inputs.repository)}/pulls/${evalInput(inputs.prNumber)}`);
 
-
-try {
-  const octokit = (0,_actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit)(evalInput(inputs.token));
-} catch (error) {
-  console.log("Failed to auth with octokit...");
-  (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)(error.message);
-}
+const octokit = (0,_actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit)(evalInput(inputs.token));
 
 try {
   let pr = await octokit.request(
@@ -9628,7 +9622,7 @@ try {
     console.log(`Comp-plex PR deploy link: ${linkCompplexDeploy.origin}`);
     (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput)("compplex_link", linkCompplexDeploy.origin);
   }
-  
+
   if(isWebAppLabel){
     let commentWebAppDeploy = isUndefined(
       comments.data.find(

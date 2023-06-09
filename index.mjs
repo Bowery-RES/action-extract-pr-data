@@ -6,9 +6,9 @@ import { getOctokit } from '@actions/github';
  * If env var `GH_DEBUG='1'` - inputs for actions will be evaluated from environment but not from Action's input
  */
 const inputs = {
-  token: "GH_TOKEN",
-  prNumber: "PR",
-  repository: "REPO"
+  token: "gh_token",
+  prNumber: "pr_number",
+  repository: "repository"
 }
 
 const evalInput = (inputName) => {
