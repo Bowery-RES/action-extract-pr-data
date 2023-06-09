@@ -9589,15 +9589,6 @@ const evalInput = (inputName) => {
   return process.env.GH_DEBUG === 1 ? process.env[inputName] : (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)(inputName) 
 } 
 
-/* debug */
-console.log(inputs.token);
-console.log(inputs.prNumber);
-console.log(inputs.repository);
-console.log(evalInput(inputs.token));
-console.log(evalInput(inputs.prNumber));
-console.log(evalInput(inputs.repository));
-console.log(`GET /repos/${evalInput(inputs.repository)}/pulls/${evalInput(inputs.prNumber)}`);
-
 const octokit = (0,_actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit)(evalInput(inputs.token));
 
 try {
@@ -9623,7 +9614,7 @@ try {
     (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput)("compplex_link", linkCompplexDeploy.origin);
   }
 
-  if(isWebAppLabel){
+  if(isWebAppLabel && !(isCompPlexLabel)){
     let commentWebAppDeploy = isUndefined(
       comments.data.find(
         comment => comment.body.includes("Application URL ->")
