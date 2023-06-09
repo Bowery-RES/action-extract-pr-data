@@ -15,14 +15,22 @@ const evalInput = (inputName) => {
   return process.env.GH_DEBUG === 1 ? process.env[inputName] : getInput(inputName) 
 } 
 
+/* debug */
+console.log(inputs.token);
+console.log(inputs.prNumber);
+console.log(inputs.repository);
+console.log(evalInput(inputs.token));
+console.log(evalInput(inputs.prNumber));
+console.log(evalInput(inputs.repository));
+console.log(`GET /repos/${evalInput(inputs.repository)}/pulls/${evalInput(inputs.prNumber)}`);
+
+
 try {
   const octokit = getOctokit(evalInput(inputs.token));
 } catch (error) {
   console.log("Failed to auth with octokit...");
   setFailed(error.message);
 }
-
-
 
 try {
   let pr = await octokit.request(
