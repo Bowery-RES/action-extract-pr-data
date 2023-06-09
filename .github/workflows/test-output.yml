@@ -1,0 +1,21 @@
+name: Test output from action
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Call action to create tag and draft release
+    steps:
+    - name: checkout repository
+      uses: actions/checkout@v3
+
+    - name: "call action"
+      id: test_output
+      env:
+        GH_TOKEN: ${{ secrets.GH_TECH_ACCESS_TOKEN }}
+      uses: .
+
+    - name: "get review app url"
+      run: echo "The review app url is ${{ steps.test_output.outputs.webapp_link }}"

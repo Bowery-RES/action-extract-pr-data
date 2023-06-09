@@ -136,3 +136,5 @@ out
 
 # mac file system
 .DS_Store
+debug.js
+debug.mjs
