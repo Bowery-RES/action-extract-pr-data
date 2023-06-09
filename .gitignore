@@ -133,3 +133,6 @@ out
 .act/.secrets
 .act/debug.json
 .act/my.env
+
+# mac file system
+.DS_Store

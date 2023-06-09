@@ -10,8 +10,9 @@ const inputs = {
   prNumber: "PR",
   repository: "REPO"
 }
+
 const evalInput = (inputName) => {
-  return process.env.GH_DEBUG == 1 ? process.env[inputName] : getInput(inputName) 
+  return process.env.GH_DEBUG === 1 ? process.env[`${inputName}`] : getInput(inputName) 
 } 
 
 const octokit = getOctokit(evalInput(inputs.token));
@@ -45,7 +46,7 @@ try {
         ), "Failed to find comment with WebApp PR deploy link"
     );
     let linkWebAppDeploy = new URL(
-      commentWebAppDeploy.body.split(" ").find(val=> val.startsWith("https://webapp"))
+      commentWebAppDeploy.body.split(" ").find(val=> val.startsWith("https://pr"))
     ); 
     console.log(`WebApp PR deploy link: ${linkWebAppDeploy.origin}`);
     setOutput("webapp_link", linkWebAppDeploy.origin);
