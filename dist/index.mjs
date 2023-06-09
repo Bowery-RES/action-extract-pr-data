@@ -9576,8 +9576,9 @@ const evalInput = (inputName) => {
 
 const octokit = (0,_actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit)(evalInput(inputs.token));
 
+
+
 try {
-  console.log(`inside try to get pr: GET /repos/${evalInput(inputs.repository)}/pulls/${evalInput(inputs.prNumber)}`);
   let pr = await octokit.request(
     `GET /repos/${evalInput(inputs.repository)}/pulls/${evalInput(inputs.prNumber)}`
   );
@@ -9612,6 +9613,7 @@ try {
     (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput)("webapp_link", linkWebAppDeploy.origin);
   }
 } catch (error) {
+  console.log(`inside catch: GET /repos/${evalInput(inputs.repository)}/pulls/${evalInput(inputs.prNumber)}`);
   (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)(error.message);
 }
 

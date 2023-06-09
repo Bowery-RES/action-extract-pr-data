@@ -17,8 +17,9 @@ const evalInput = (inputName) => {
 
 const octokit = getOctokit(evalInput(inputs.token));
 
+
+
 try {
-  console.log(`inside try to get pr: GET /repos/${evalInput(inputs.repository)}/pulls/${evalInput(inputs.prNumber)}`);
   let pr = await octokit.request(
     `GET /repos/${evalInput(inputs.repository)}/pulls/${evalInput(inputs.prNumber)}`
   );
@@ -53,6 +54,7 @@ try {
     setOutput("webapp_link", linkWebAppDeploy.origin);
   }
 } catch (error) {
+  console.log(`inside catch: GET /repos/${evalInput(inputs.repository)}/pulls/${evalInput(inputs.prNumber)}`);
   setFailed(error.message);
 }
 
